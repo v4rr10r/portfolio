@@ -132,7 +132,7 @@ The first thing to do is inspect the archive metadata using bkcrack's `-L` flag:
 bkcrack -L test.zip
 ```
 
-![Info](/check.jpg)
+![Info](check.jpg)
 
 The output confirms two things for each file:
 - **Encryption: ZipCrypto** — not AES, so the plaintext attack is viable.
@@ -168,7 +168,7 @@ With the known plaintext ready, I ran bkcrack against `hosts.txt` inside the arc
 bkcrack -C test.zip -c hosts.txt -p known.txt
 ```
 
-![Keys](/keys.jpg)
+![Keys](keys.jpg)
 
 bkcrack uses the known plaintext to reconstruct the XOR keystream, then works backward through the ZipCrypto state machine to recover the three internal 32-bit keys. The attack took about a minute and returned:
 
@@ -188,7 +188,7 @@ With the recovered keys, I used bkcrack to rewrite the entire archive in decrypt
 bkcrack -C test.zip -k 5250399c eb1de8f5 5899fbc1 -D unlocked.zip
 ```
 
-![Keys](/secret.jpg)
+![Keys](secret.jpg)
 
 This produces `unlocked.zip` — same files, no encryption. Now I can extract `secret.txt` normally with `unzip` and read the flag.
 
@@ -203,7 +203,7 @@ Having the internal keys is already enough to decrypt the archive — but if you
 bkcrack -k 5250399c eb1de8f5 5899fbc1 -r 8..12 ?a
 ```
 
-![Keys](/password.jpg)
+![Keys](password.jpg)
 
 The `-r 8..12` tells bkcrack to try password lengths between 8 and 12 characters, and `?a` means the charset is all printable ASCII. It came back with:
 
