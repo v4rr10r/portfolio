@@ -26,7 +26,7 @@ function CursorTrail() {
       return undefined
     }
 
-    const emitFragment = (x, y) => {
+    const emitFragment = (x, y, isHovering) => {
       const container = containerRef.current
 
       if (!container) {
@@ -34,17 +34,23 @@ function CursorTrail() {
       }
 
       const fragment = document.createElement('span')
-      const lifetime = 320 + Math.round(Math.random() * 280)
-      const driftX = (Math.random() - 0.5) * 22
-      const driftY = -8 - Math.random() * 24
+      const lifetime = isHovering
+        ? 400 + Math.round(Math.random() * 100)
+        : 440 + Math.round(Math.random() * 140)
+      const driftX = Math.round((Math.random() - 0.5) * 8)
+      const driftY = 2 + Math.round(Math.random() * 3)
+      const rotation = ((Math.random() - 0.5) * 10).toFixed(2)
+      const glow = isHovering ? 0.18 : 0.12
 
       fragment.className = 'cursor-fragment'
       fragment.textContent =
         BINARY_FRAGMENTS[Math.floor(Math.random() * BINARY_FRAGMENTS.length)]
-      fragment.style.left = `${x + (Math.random() - 0.5) * 18}px`
-      fragment.style.top = `${y + (Math.random() - 0.5) * 18}px`
+      fragment.style.left = `${x + (Math.random() - 0.5) * 16}px`
+      fragment.style.top = `${y + (Math.random() - 0.5) * 12}px`
       fragment.style.setProperty('--fragment-drift-x', `${driftX}px`)
       fragment.style.setProperty('--fragment-drift-y', `${driftY}px`)
+      fragment.style.setProperty('--fragment-rotate', `${rotation}deg`)
+      fragment.style.setProperty('--fragment-glow', `${glow}`)
       fragment.style.animationDuration = `${lifetime}ms`
       container.appendChild(fragment)
 
@@ -81,9 +87,9 @@ function CursorTrail() {
       const target = targetPointRef.current
       const deltaX = Math.abs(event.clientX - lastMoveRef.current.x)
       const deltaY = Math.abs(event.clientY - lastMoveRef.current.y)
-      const movedEnough = deltaX + deltaY > 9
-      const hoverBoost = isHoveringRef.current ? 1.7 : 1
-      const minInterval = isHoveringRef.current ? 72 : 124
+      const movedEnough = deltaX + deltaY > 11
+      const hoverBoost = isHoveringRef.current ? 1.35 : 1
+      const minInterval = isHoveringRef.current ? 82 : 132
 
       target.x = event.clientX
       target.y = event.clientY
@@ -96,11 +102,11 @@ function CursorTrail() {
       if (
         movedEnough &&
         now - lastEmitRef.current > minInterval &&
-        Math.random() < 0.16 * hoverBoost
+        Math.random() < 0.12 * hoverBoost
       ) {
         lastEmitRef.current = now
         lastMoveRef.current = { x: event.clientX, y: event.clientY }
-        emitFragment(event.clientX, event.clientY)
+        emitFragment(event.clientX, event.clientY, isHoveringRef.current)
       }
     }
 

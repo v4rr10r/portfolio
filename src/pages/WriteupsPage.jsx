@@ -34,7 +34,7 @@ function WriteupsPage({ writeups }) {
   }
 
   return (
-    <div className="page-stack">
+    <div className="page-stack writeups-page">
       <section className="panel page-hero">
         <p className="eyebrow">CTF Writeups</p>
         <h1> CTF writeups and challenge breakdowns.</h1>
@@ -88,7 +88,7 @@ function WriteupsPage({ writeups }) {
       </section>
 
       {visibleWriteups.length ? (
-        <section className="card-grid">
+        <section className="card-grid writeup-grid">
           {visibleWriteups.map((item) => (
             <ContentCard item={item} key={item.slug} to={`/writeups/${item.slug}`} />
           ))}
