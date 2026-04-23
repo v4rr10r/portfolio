@@ -68,13 +68,13 @@
       "date": "Jan 2026"
     },
     {
-      "title": "Cyber Matrix CTF 2026",
+      "title": "Cyber Matrix CTF",
       "organization": "SAKEC, Mumbai",
       "rank": "4th",
       "date": "Feb 2026"
     },
     {
-      "title": "X'ploitathon 2026",
+      "title": "X'ploitathon",
       "organization": "SIES GST, Navi Mumbai",
       "rank": "6th",
       "date": "Mar 2026"
@@ -86,19 +86,25 @@
       "date": "Mar 2026"
     },
     {
-      "title": "Ciphathon 26'",
+      "title": "Ciphathon",
       "organization": "MIT World Peace University, Pune",
       "rank": "1st",
       "date": "Mar 2026"
     },
     {
-      "title": "Sudarshan CTF 2026",
+      "title": "Sudarshan CTF",
       "organization": "NFSU Bhopal",
       "rank": "2nd",
       "date": "Apr 2026"
     },
     {
-      "title": "Technovate CTF 2026",
+      "title": "KJSSE CTF 3.0",
+      "organization": "K. J. Somaiya College of Engineering, Mumbai",
+      "rank": "3rd",
+      "date": "Feb 2026"
+    },
+    {
+      "title": "Technovate CTF",
       "organization": "D.Y. Patil Ramrao Adik Institute of Technology (RAIT), Navi Mumbai",
       "rank": "1st",
       "date": "Apr 2026"
